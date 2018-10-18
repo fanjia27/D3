@@ -95,16 +95,29 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
    .text("In Poverty (%)");
 
   // Add labels on the circles
-  chartGroup.selectAll("text")
+  // chartGroup.selectAll("tspan")
+  //   .data(healthData)
+  //   .enter()
+  //   .append("tspan")
+  //   .attr("x", d => xLinearScale(d.poverty))
+  //   .attr("y", d => yLinearScale(d.healthcare))
+  //   .text(function(d){return d.abbr})
+  //   .attr("font_family", "sans-serif")
+  //   .attr("font_size", "11px")
+  //   .attr("fill", "darkblue");
+
+  
+  chartGroup.append("text")
+    .style("font_size", "10px")
+    .style("fill", "darkblue")
+    .style('text-anchor','middle')
+    .selectAll("tspan")
     .data(healthData)
     .enter()
-    .append("text")
+    .append("tspan")
     .attr("x", d => xLinearScale(d.poverty))
     .attr("y", d => yLinearScale(d.healthcare))
-    .text(function(d){return d.abbr})
-    .attr("font_family", "sans-serif")
-    .attr("font_size", "11px")
-    .attr("fill", "darkblue");
+    .text(d => d.abbr);
 
 
 });
